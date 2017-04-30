@@ -3,9 +3,11 @@
     <div class="col-sm-12">
       <h1>Productos</h1>
 
-      <div class="text-right">
-        <%= link_to "Publicar Producto", new_product_path, class: "btn btn-primary" %>
-      </div>
+      <% if signed_in? %>
+          <div class="text-right">
+            <%= link_to "Publicar Producto", new_product_path, class: "btn btn-primary" %>
+          </div>
+      <% end %>
 
       <table class="table">
         <tr>
@@ -21,11 +23,14 @@
            <td><%= product.name %></td>
            <td><%= product.url %></td>
            <td><%= product.description %></td>
-           <td><%= link_to "Editar", edit_product_path(product), class: "btn btn-warning" %>
-               <%= link_to "Detalles", product, class: "btn btn-info" %>
-               <%= link_to "Eliminar", product, method: :delete , data: { confirm: "¿Está seguro de eliminar este producto?"}, class: "btn btn-danger" %>
-
-           </td>
+           <% if signed_in? %>
+               <td><%= link_to "Editar", edit_product_path(product), class: "btn btn-warning" %>
+                   <%= link_to "Detalles", product, class: "btn btn-info" %>
+                   <%= link_to "Eliminar", product, method: :delete , data: { confirm: "¿Está seguro de eliminar este producto?"}, class: "btn btn-danger" %>
+               </td>
+           <% else %>
+                <td><%= link_to "Detalles", product, class: "btn btn-info" %></td>
+           <% end %>
         </tr>
         <% end %>
       </table>
