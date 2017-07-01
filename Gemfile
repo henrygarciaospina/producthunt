@@ -37,6 +37,8 @@ gem 'annotate'
 
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
+gem "figaro"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
